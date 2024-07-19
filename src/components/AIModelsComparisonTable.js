@@ -20,7 +20,7 @@ export default function AIModelsComparisonTable() {
         const decoder = new TextDecoder('utf-8');
         const csv = decoder.decode(result.value);
         const results = Papa.parse(csv, { header: true });
-        console.log("Parsed CSV data:", results.data); // 調試輸出
+        console.log("Parsed CSV data:", results.data); // 调试输出
         setData(results.data);
       } catch (error) {
         console.error("Failed to load CSV file", error);
@@ -28,7 +28,7 @@ export default function AIModelsComparisonTable() {
     };
   
     fetchData();
-  }, []);
+  }, []);  
 
   const sortedData = useMemo(() => {
     let sortableItems = [...data];
