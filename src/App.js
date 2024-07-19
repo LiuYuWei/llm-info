@@ -13,17 +13,17 @@ function App() {
           <h2>LLM 資料</h2>
           <ul>
             <li>
-              <Link to="/"><FaHome /> 個人自我介紹</Link>
+              <Link to="/llm-info/"><FaHome /> 個人自我介紹</Link>
             </li>
             <li>
-              <Link to="/comparison"><FaTable /> LLM 模型比較表</Link>
+              <Link to="/llm-info/comparison"><FaTable /> LLM 模型比較表</Link>
             </li>
           </ul>
         </div>
         <div className="content">
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/comparison" element={<ComparisonPage />} />
+            <Route path="/llm-info/" element={<HomePage />} />
+            <Route path="/llm-info/comparison" element={<ComparisonPage />} />
           </Routes>
         </div>
       </div>
