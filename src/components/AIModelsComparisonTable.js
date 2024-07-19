@@ -11,7 +11,7 @@ export default function AIModelsComparisonTable() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(process.env.PUBLIC_URL + '/data/llm_model_comparison.csv');
+        const response = await fetch(process.env.PUBLIC_URL + '/llm_model_comparison.csv');
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
