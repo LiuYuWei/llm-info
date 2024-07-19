@@ -10,10 +10,10 @@ function App() {
     <Router>
       <div className="App">
         <div className="sidebar">
-          <h2>Simon Liu - LLM 資料</h2>
+          <h2>LLM 資料</h2>
           <ul>
             <li>
-              <Link to="/"><FaHome /> 首頁</Link>
+              <Link to="/"><FaHome /> 個人自我介紹</Link>
             </li>
             <li>
               <Link to="/comparison"><FaTable /> LLM 模型比較表</Link>
