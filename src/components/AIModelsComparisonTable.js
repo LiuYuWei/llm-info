@@ -336,11 +336,11 @@ export default function AIModelsComparisonTable() {
             <tr key={index}>
               <td style={{...tdStyle, fontWeight: 'bold'}}>{item.name}</td>
               <td style={tdStyle}>{item.openSource}</td>
-              <td style={tdStyle}>{!isNaN(parseFloat(item.mmlu)) ? parseFloat(item.mmlu).toFixed(1) : '-'}</td>
-              <td style={tdStyle}>{!isNaN(parseFloat(item.gpqa)) ? parseFloat(item.gpqa).toFixed(1) : '-'}</td>
-              <td style={tdStyle}>{!isNaN(parseFloat(item.humanEval)) ? parseFloat(item.humanEval).toFixed(1) : '-'}</td>
-              <td style={tdStyle}>{!isNaN(parseFloat(item.gsm8k)) ? parseFloat(item.gsm8k).toFixed(1) : '-'}</td>
-              <td style={tdStyle}>{!isNaN(parseFloat(item.math)) ? parseFloat(item.math).toFixed(1) : '-'}</td>
+              <td style={tdStyle}>{item.mmlu}</td>
+              <td style={tdStyle}>{item.gpqa}</td>
+              <td style={tdStyle}>{item.humanEval}</td>
+              <td style={tdStyle}>{item.gsm8k}</td>
+              <td style={tdStyle}>{item.math}</td>
             </tr>
           ))}
         </tbody>
