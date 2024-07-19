@@ -13,10 +13,6 @@ const HomePage = () => {
         <div className="info-value">simonliuyuwei@gmail.com</div>
       </div>
       <div className="info-group">
-        <div className="info-label">Line</div>
-        <div className="info-value">fetnetsimonliu</div>
-      </div>
-      <div className="info-group">
         <div className="info-label">Location</div>
         <div className="info-value">New Taipei City, Taiwan</div>
       </div>
