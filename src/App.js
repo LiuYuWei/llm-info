@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { FaHome, FaTable } from 'react-icons/fa';
 import HomePage from './pages/HomePage';
 import ComparisonPage from './pages/ComparisonPage';
