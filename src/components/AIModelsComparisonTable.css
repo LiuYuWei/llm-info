@@ -1,0 +1,86 @@
+/* styles.css */
+
+.mujiStyle {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    color: #333;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f7f7f7;
+  }
+  
+  .titleStyle {
+    font-size: 28px;
+    font-weight: normal;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    text-align: center;
+  }
+  
+  .headerContainerStyle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .authorStyle {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .searchContainerStyle {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .inputStyle {
+    width: 200px;
+    padding: 8px 15px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  .selectStyle {
+    padding: 8px 15px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    font-size: 14px;
+    outline: none;
+    background-color: white;
+  }
+  
+  .tableStyle {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 1px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .thStyle {
+    padding: 15px;
+    text-align: left;
+    font-weight: normal;
+    font-size: 14px;
+    border-bottom: 2px solid #ddd;
+    background-color: #f2f2f2;
+    cursor: pointer;
+  }
+  
+  .tdStyle {
+    padding: 15px;
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .referenceStyle {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+  }
+  
