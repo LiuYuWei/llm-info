@@ -2,151 +2,150 @@ import React, { useState, useMemo } from 'react';
 
 const data = [
   {
-    name: "Meta Llama 3 8B",
-    openSource: "Open Source",
-    mmlu: 68.4,
-    gpqa: 34.2,
-    humanEval: 62.2,
-    gsm8k: 79.6,
-    math: 30.0
+    "name": "Meta Llama 3 8B",
+    "openSource": "開源",
+    "mmlu": "68.4",
+    "gpqa": "34.2",
+    "humanEval": "62.2",
+    "gsm8k": "79.6",
+    "math": "30.0"
   },
   {
-    name: "Meta Llama 3 70B",
-    openSource: "Open Source",
-    mmlu: 82.0,
-    gpqa: 39.5,
-    humanEval: 81.7,
-    gsm8k: 93.0,
-    math: 50.4
+    "name": "Meta Llama 3 70B",
+    "openSource": "開源",
+    "mmlu": "82.0",
+    "gpqa": "39.5",
+    "humanEval": "81.7",
+    "gsm8k": "93.0",
+    "math": "50.4"
   },
   {
-    name: "Meta Llama 3 400B+",
-    openSource: "-",
-    mmlu: 86.1,
-    gpqa: 48.0,
-    humanEval: 84.1,
-    gsm8k: 94.1,
-    math: 57.8
+    "name": "Meta Llama 3 400B+",
+    "openSource": "-",
+    "mmlu": "86.1",
+    "gpqa": "48.0",
+    "humanEval": "84.1",
+    "gsm8k": "94.1",
+    "math": "57.8"
   },
   {
-    name: "Meta Llama 2 7B",
-    openSource: "Open Source",
-    mmlu: 34.1,
-    gpqa: 21.7,
-    humanEval: 7.9,
-    gsm8k: 25.7,
-    math: 3.8
+    "name": "Meta Llama 2 7B",
+    "openSource": "開源",
+    "mmlu": "34.1",
+    "gpqa": "21.7",
+    "humanEval": "7.9",
+    "gsm8k": "25.7",
+    "math": "3.8"
   },
   {
-    name: "Meta Llama 2 70B",
-    openSource: "Open Source",
-    mmlu: 52.9,
-    gpqa: 21.0,
-    humanEval: 25.6,
-    gsm8k: 57.5,
-    math: 11.6
+    "name": "Meta Llama 2 70B",
+    "openSource": "開源",
+    "mmlu": "52.9",
+    "gpqa": "21.0",
+    "humanEval": "25.6",
+    "gsm8k": "57.5",
+    "math": "11.6"
   },
   {
-    name: "Anthropic Claude 3 Opus",
-    openSource: "Close Source",
-    mmlu: 86.8,
-    gpqa: 50.4,
-    humanEval: 84.9,
-    gsm8k: 95.0,
-    math: 60.1
+    "name": "Anthropic Claude 3 Opus",
+    "openSource": "閉源",
+    "mmlu": "86.8",
+    "gpqa": "50.4 (0-shot CoT)",
+    "humanEval": "84.9",
+    "gsm8k": "95.0",
+    "math": "60.1 (0-shot CoT)"
   },
   {
-    name: "Anthropic Claude 3 Sonnet",
-    openSource: "Close Source",
-    mmlu: 79.0,
-    gpqa: 40.4,
-    humanEval: 73.0,
-    gsm8k: 92.3,
-    math: 43.1
+    "name": "Anthropic Claude 3 Sonnet",
+    "openSource": "閉源",
+    "mmlu": "79.0",
+    "gpqa": "40.4 (0-shot CoT)",
+    "humanEval": "73.0",
+    "gsm8k": "92.3",
+    "math": "43.1 (0-shot CoT)"
   },
   {
-    name: "Anthropic Claude 3 Haiku",
-    openSource: "Close Source",
-    mmlu: 75.2,
-    gpqa: 33.3,
-    humanEval: 75.9,
-    gsm8k: 88.9,
-    math: 38.9
+    "name": "Anthropic Claude 3 Haiku",
+    "openSource": "閉源",
+    "mmlu": "75.2",
+    "gpqa": "33.3 (0-shot CoT)",
+    "humanEval": "75.9",
+    "gsm8k": "88.9",
+    "math": "38.9 (0-shot CoT)"
   },
   {
-    name: "OpenAI GPT-4",
-    openSource: "Close Source",
-    mmlu: 86.4,
-    gpqa: 35.7,
-    humanEval: 67.0,
-    gsm8k: 92.0,
-    math: 52.9
+    "name": "OpenAI GPT-4",
+    "openSource": "閉源",
+    "mmlu": "86.4",
+    "gpqa": "35.7 (0-shot CoT)",
+    "humanEval": "67.0",
+    "gsm8k": "92.0 (5-shot CoT)",
+    "math": "52.9"
   },
   {
-    name: "OpenAI GPT-3.5",
-    openSource: "Close Source",
-    mmlu: 70.0,
-    gpqa: 28.1,
-    humanEval: 48.1,
-    gsm8k: 57.1,
-    math: 34.1
+    "name": "OpenAI GPT-3.5",
+    "openSource": "閉源",
+    "mmlu": "70.0",
+    "gpqa": "28.1 (0-shot CoT)",
+    "humanEval": "48.1",
+    "gsm8k": "57.1 (5-shot)",
+    "math": "34.1"
   },
   {
-    name: "Google Gemma 7B-it",
-    openSource: "Open Source",
-    mmlu: 53.3,
-    gpqa: 21.4,
-    humanEval: 30.5,
-    gsm8k: 30.6,
-    math: 12.2
+    "name": "Google Gemma 7B-it",
+    "openSource": "開源",
+    "mmlu": "53.3",
+    "gpqa": "21.4",
+    "humanEval": "30.5",
+    "gsm8k": "30.6",
+    "math": "12.2"
   },
   {
-    name: "Google Gemini 1.0 Ultra",
-    openSource: "Close Source",
-    mmlu: 83.7,
-    gpqa: null,
-    humanEval: 74.4,
-    gsm8k: 94.4,
-    math: 53.2
+    "name": "Google Gemini 1.0 Ultra",
+    "openSource": "閉源",
+    "mmlu": "83.7",
+    "gpqa": "-",
+    "humanEval": "74.4",
+    "gsm8k": "94.4 (Maj1@32)",
+    "math": "53.2"
   },
   {
-    name: "Google Gemini 1.0 Pro",
-    openSource: "Close Source",
-    mmlu: 71.8,
-    gpqa: null,
-    humanEval: 67.7,
-    gsm8k: 86.5,
-    math: 32.6
+    "name": "Google Gemini 1.0 Pro",
+    "openSource": "閉源",
+    "mmlu": "71.8",
+    "gpqa": "-",
+    "humanEval": "67.7",
+    "gsm8k": "86.5 (Maj1@32)",
+    "math": "32.6"
   },
   {
-    name: "Google Gemini 1.5 Pro",
-    openSource: "Close Source",
-    mmlu: 81.9,
-    gpqa: 41.5,
-    humanEval: 71.9,
-    gsm8k: 91.7,
-    math: 58.5
+    "name": "Google Gemini 1.5 Pro",
+    "openSource": "閉源",
+    "mmlu": "81.9",
+    "gpqa": "41.5 (0-shot CoT)",
+    "humanEval": "71.9",
+    "gsm8k": "91.7",
+    "math": "58.5"
   },
   {
-    name: "MistralAI Mistral 7B Instruct",
-    openSource: "Open Source",
-    mmlu: 58.4,
-    gpqa: 26.3,
-    humanEval: 36.6,
-    gsm8k: 39.9,
-    math: 11.0
+    "name": "MistralAI Mistral 7B Instruct",
+    "openSource": "開源",
+    "mmlu": "58.4",
+    "gpqa": "26.3",
+    "humanEval": "36.6",
+    "gsm8k": "39.9",
+    "math": "11.0"
   },
   {
-    name: "MistralAI Mistral large",
-    openSource: "Close Source",
-    mmlu: 81.2,
-    gpqa: null,
-    humanEval: 45.1,
-    gsm8k: null,
-    math: null
+    "name": "MistralAI Mistral large",
+    "openSource": "閉源",
+    "mmlu": "81.2",
+    "gpqa": "-",
+    "humanEval": "45.1",
+    "gsm8k": "-",
+    "math": "-"
   }
 ];
-
 export default function AIModelsComparisonTable() {
   const [searchTerm, setSearchTerm] = useState('');
   const [openSourceFilter, setOpenSourceFilter] = useState('all');
@@ -168,15 +167,15 @@ export default function AIModelsComparisonTable() {
       });
     }
     return sortableItems;
-  }, [data, sortConfig]);
+  }, [sortConfig]);
 
   const filteredData = useMemo(() => {
     return sortedData.filter(item => {
       const nameMatch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
       const openSourceMatch = 
         openSourceFilter === 'all' || 
-        (openSourceFilter === 'open' && item.openSource === 'Open Source') ||
-        (openSourceFilter === 'close' && item.openSource === 'Close Source');
+        (openSourceFilter === 'open' && item.openSource === '開源') ||
+        (openSourceFilter === 'close' && item.openSource === '閉源');
       return nameMatch && openSourceMatch;
     });
   }, [sortedData, searchTerm, openSourceFilter]);
@@ -337,11 +336,11 @@ export default function AIModelsComparisonTable() {
             <tr key={index}>
               <td style={{...tdStyle, fontWeight: 'bold'}}>{item.name}</td>
               <td style={tdStyle}>{item.openSource}</td>
-              <td style={tdStyle}>{item.mmlu !== null ? item.mmlu.toFixed(1) : '-'}</td>
-              <td style={tdStyle}>{item.gpqa !== null ? item.gpqa.toFixed(1) : '-'}</td>
-              <td style={tdStyle}>{item.humanEval !== null ? item.humanEval.toFixed(1) : '-'}</td>
-              <td style={tdStyle}>{item.gsm8k !== null ? item.gsm8k.toFixed(1) : '-'}</td>
-              <td style={tdStyle}>{item.math !== null ? item.math.toFixed(1) : '-'}</td>
+              <td style={tdStyle}>{!isNaN(parseFloat(item.mmlu)) ? parseFloat(item.mmlu).toFixed(1) : '-'}</td>
+              <td style={tdStyle}>{!isNaN(parseFloat(item.gpqa)) ? parseFloat(item.gpqa).toFixed(1) : '-'}</td>
+              <td style={tdStyle}>{!isNaN(parseFloat(item.humanEval)) ? parseFloat(item.humanEval).toFixed(1) : '-'}</td>
+              <td style={tdStyle}>{!isNaN(parseFloat(item.gsm8k)) ? parseFloat(item.gsm8k).toFixed(1) : '-'}</td>
+              <td style={tdStyle}>{!isNaN(parseFloat(item.math)) ? parseFloat(item.math).toFixed(1) : '-'}</td>
             </tr>
           ))}
         </tbody>
