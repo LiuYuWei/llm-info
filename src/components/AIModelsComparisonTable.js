@@ -26,7 +26,7 @@ export default function AIModelsComparisonTable() {
         console.error("Failed to load CSV file", error);
       }
     };
-
+  
     fetchData();
   }, []);
 
