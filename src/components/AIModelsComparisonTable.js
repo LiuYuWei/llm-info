@@ -2,65 +2,20 @@ import React, { useState, useMemo } from 'react';
 
 const data = [
   {
-    "name": "Meta Llama 3 8B",
-    "openSource": "開源",
-    "mmlu": "68.4",
-    "gpqa": "34.2",
-    "humanEval": "62.2",
-    "gsm8k": "79.6",
-    "math": "30.0"
-  },
-  {
-    "name": "Meta Llama 3 70B",
-    "openSource": "開源",
-    "mmlu": "82.0",
-    "gpqa": "39.5",
-    "humanEval": "81.7",
-    "gsm8k": "93.0",
-    "math": "50.4"
-  },
-  {
-    "name": "Meta Llama 3 400B+",
-    "openSource": "-",
-    "mmlu": "86.1",
-    "gpqa": "48.0",
-    "humanEval": "84.1",
-    "gsm8k": "94.1",
-    "math": "57.8"
-  },
-  {
-    "name": "Meta Llama 2 7B",
-    "openSource": "開源",
-    "mmlu": "34.1",
-    "gpqa": "21.7",
-    "humanEval": "7.9",
-    "gsm8k": "25.7",
-    "math": "3.8"
-  },
-  {
-    "name": "Meta Llama 2 70B",
-    "openSource": "開源",
-    "mmlu": "52.9",
-    "gpqa": "21.0",
-    "humanEval": "25.6",
-    "gsm8k": "57.5",
-    "math": "11.6"
-  },
-  {
     "name": "Anthropic Claude 3 Opus",
     "openSource": "閉源",
     "mmlu": "86.8",
     "gpqa": "50.4 (0-shot CoT)",
-    "humanEval": "84.9",
-    "gsm8k": "95.0",
+    "humanEval": "73",
+    "gsm8k": "92.3",
     "math": "60.1 (0-shot CoT)"
   },
   {
     "name": "Anthropic Claude 3 Sonnet",
     "openSource": "閉源",
-    "mmlu": "79.0",
+    "mmlu": "79",
     "gpqa": "40.4 (0-shot CoT)",
-    "humanEval": "73.0",
+    "humanEval": "73",
     "gsm8k": "92.3",
     "math": "43.1 (0-shot CoT)"
   },
@@ -74,31 +29,31 @@ const data = [
     "math": "38.9 (0-shot CoT)"
   },
   {
-    "name": "OpenAI GPT-4",
-    "openSource": "閉源",
-    "mmlu": "86.4",
-    "gpqa": "35.7 (0-shot CoT)",
-    "humanEval": "67.0",
-    "gsm8k": "92.0 (5-shot CoT)",
-    "math": "52.9"
-  },
-  {
-    "name": "OpenAI GPT-3.5",
-    "openSource": "閉源",
-    "mmlu": "70.0",
-    "gpqa": "28.1 (0-shot CoT)",
-    "humanEval": "48.1",
-    "gsm8k": "57.1 (5-shot)",
-    "math": "34.1"
-  },
-  {
-    "name": "Google Gemma 7B-it",
+    "name": "Google Gemma 7B",
     "openSource": "開源",
     "mmlu": "53.3",
     "gpqa": "21.4",
     "humanEval": "30.5",
     "gsm8k": "30.6",
     "math": "12.2"
+  },
+  {
+    "name": "Google Gemma-2 9B",
+    "openSource": "開源",
+    "mmlu": "71.3",
+    "gpqa": "-",
+    "humanEval": "40.2 (pass@1)",
+    "gsm8k": "68.6 (5-shot, maj@1)",
+    "math": "36.6"
+  },
+  {
+    "name": "Google Gemma-2 27B",
+    "openSource": "開源",
+    "mmlu": "75.2",
+    "gpqa": "-",
+    "humanEval": "51.8 (pass@1)",
+    "gsm8k": "74.0 (5-shot, maj@1)",
+    "math": "42.3"
   },
   {
     "name": "Google Gemini 1.0 Ultra",
@@ -128,13 +83,58 @@ const data = [
     "math": "58.5"
   },
   {
-    "name": "MistralAI Mistral 7B Instruct",
+    "name": "Meta Llama 3 8B",
+    "openSource": "開源",
+    "mmlu": "68.4",
+    "gpqa": "34.2",
+    "humanEval": "62.2",
+    "gsm8k": "79.6",
+    "math": "30"
+  },
+  {
+    "name": "Meta Llama 3 70B",
+    "openSource": "開源",
+    "mmlu": "82",
+    "gpqa": "39.5",
+    "humanEval": "81.7",
+    "gsm8k": "93",
+    "math": "50.4"
+  },
+  {
+    "name": "Meta Llama 3 400B+",
+    "openSource": "開源",
+    "mmlu": "86.1",
+    "gpqa": "48",
+    "humanEval": "84.1",
+    "gsm8k": "94.1",
+    "math": "57.8"
+  },
+  {
+    "name": "Meta Llama 2 7B",
+    "openSource": "開源",
+    "mmlu": "34.1",
+    "gpqa": "21.7",
+    "humanEval": "7.9",
+    "gsm8k": "25.7",
+    "math": "3.8"
+  },
+  {
+    "name": "Meta Llama 2 70B",
+    "openSource": "開源",
+    "mmlu": "52.9",
+    "gpqa": "21",
+    "humanEval": "25.6",
+    "gsm8k": "57.5",
+    "math": "11.6"
+  },
+  {
+    "name": "MistralAI Mistral 7B",
     "openSource": "開源",
     "mmlu": "58.4",
     "gpqa": "26.3",
     "humanEval": "36.6",
     "gsm8k": "39.9",
-    "math": "11.0"
+    "math": "11"
   },
   {
     "name": "MistralAI Mistral large",
@@ -144,6 +144,42 @@ const data = [
     "humanEval": "45.1",
     "gsm8k": "-",
     "math": "-"
+  },
+  {
+    "name": "OpenAI GPT-4o",
+    "openSource": "閉源",
+    "mmlu": "-",
+    "gpqa": "-",
+    "humanEval": "-",
+    "gsm8k": "-",
+    "math": "-"
+  },
+  {
+    "name": "OpenAI GPT-4o mini",
+    "openSource": "閉源",
+    "mmlu": "-",
+    "gpqa": "-",
+    "humanEval": "-",
+    "gsm8k": "-",
+    "math": "-"
+  },
+  {
+    "name": "OpenAI GPT-4",
+    "openSource": "閉源",
+    "mmlu": "86.4",
+    "gpqa": "35.7 (0-shot CoT)",
+    "humanEval": "67",
+    "gsm8k": "92.0 (5-shot CoT)",
+    "math": "52.9"
+  },
+  {
+    "name": "OpenAI GPT-3.5",
+    "openSource": "閉源",
+    "mmlu": "70",
+    "gpqa": "28.1 (0-shot CoT)",
+    "humanEval": "48.1",
+    "gsm8k": "57.1 (5-shot)",
+    "math": "34.1"
   }
 ];
 export default function AIModelsComparisonTable() {
