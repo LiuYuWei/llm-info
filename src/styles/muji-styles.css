@@ -1,0 +1,52 @@
+.muji-sidebar {
+  background-color: #f4f4f4;
+  padding: 20px;
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.muji-h2 {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.muji-ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.muji-li {
+  margin-bottom: 15px;
+}
+
+.muji-link {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.muji-link:hover {
+  color: #666;
+}
+
+.muji-link svg {
+  margin-right: 10px;
+}
+
+.muji-content {
+  margin-left: 270px;
+  padding: 20px;
+}
