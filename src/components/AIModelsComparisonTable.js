@@ -1,26 +1,191 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import Papa from 'papaparse';
-import './AIModelsComparisonTable.css';
+import React, { useState, useMemo } from 'react';
 
+const data = [
+  {
+    "name": "Anthropic Claude 3 Opus",
+    "openSource": "閉源",
+    "mmlu": "86.8",
+    "gpqa": "50.4 (0-shot CoT)",
+    "humanEval": "73",
+    "gsm8k": "92.3",
+    "math": "60.1 (0-shot CoT)"
+  },
+  {
+    "name": "Anthropic Claude 3 Sonnet",
+    "openSource": "閉源",
+    "mmlu": "79",
+    "gpqa": "40.4 (0-shot CoT)",
+    "humanEval": "73",
+    "gsm8k": "92.3",
+    "math": "43.1 (0-shot CoT)"
+  },
+  {
+    "name": "Anthropic Claude 3 Haiku",
+    "openSource": "閉源",
+    "mmlu": "75.2",
+    "gpqa": "33.3 (0-shot CoT)",
+    "humanEval": "75.9",
+    "gsm8k": "88.9",
+    "math": "38.9 (0-shot CoT)"
+  },
+  {
+    "name": "Google Gemma 7B",
+    "openSource": "開源",
+    "mmlu": "53.3",
+    "gpqa": "21.4",
+    "humanEval": "30.5",
+    "gsm8k": "30.6",
+    "math": "12.2"
+  },
+  {
+    "name": "Google Gemma-2 9B",
+    "openSource": "開源",
+    "mmlu": "71.3",
+    "gpqa": "-",
+    "humanEval": "40.2 (pass@1)",
+    "gsm8k": "68.6 (5-shot, maj@1)",
+    "math": "36.6"
+  },
+  {
+    "name": "Google Gemma-2 27B",
+    "openSource": "開源",
+    "mmlu": "75.2",
+    "gpqa": "-",
+    "humanEval": "51.8 (pass@1)",
+    "gsm8k": "74.0 (5-shot, maj@1)",
+    "math": "42.3"
+  },
+  {
+    "name": "Google Gemini 1.0 Ultra",
+    "openSource": "閉源",
+    "mmlu": "83.7",
+    "gpqa": "-",
+    "humanEval": "74.4",
+    "gsm8k": "94.4 (Maj1@32)",
+    "math": "53.2"
+  },
+  {
+    "name": "Google Gemini 1.0 Pro",
+    "openSource": "閉源",
+    "mmlu": "71.8",
+    "gpqa": "-",
+    "humanEval": "67.7",
+    "gsm8k": "86.5 (Maj1@32)",
+    "math": "32.6"
+  },
+  {
+    "name": "Google Gemini 1.5 Pro",
+    "openSource": "閉源",
+    "mmlu": "81.9",
+    "gpqa": "41.5 (0-shot CoT)",
+    "humanEval": "71.9",
+    "gsm8k": "91.7",
+    "math": "58.5"
+  },
+  {
+    "name": "Meta Llama 3 8B",
+    "openSource": "開源",
+    "mmlu": "68.4",
+    "gpqa": "34.2",
+    "humanEval": "62.2",
+    "gsm8k": "79.6",
+    "math": "30"
+  },
+  {
+    "name": "Meta Llama 3 70B",
+    "openSource": "開源",
+    "mmlu": "82",
+    "gpqa": "39.5",
+    "humanEval": "81.7",
+    "gsm8k": "93",
+    "math": "50.4"
+  },
+  {
+    "name": "Meta Llama 3 400B+",
+    "openSource": "開源",
+    "mmlu": "86.1",
+    "gpqa": "48",
+    "humanEval": "84.1",
+    "gsm8k": "94.1",
+    "math": "57.8"
+  },
+  {
+    "name": "Meta Llama 2 7B",
+    "openSource": "開源",
+    "mmlu": "34.1",
+    "gpqa": "21.7",
+    "humanEval": "7.9",
+    "gsm8k": "25.7",
+    "math": "3.8"
+  },
+  {
+    "name": "Meta Llama 2 70B",
+    "openSource": "開源",
+    "mmlu": "52.9",
+    "gpqa": "21",
+    "humanEval": "25.6",
+    "gsm8k": "57.5",
+    "math": "11.6"
+  },
+  {
+    "name": "MistralAI Mistral 7B",
+    "openSource": "開源",
+    "mmlu": "58.4",
+    "gpqa": "26.3",
+    "humanEval": "36.6",
+    "gsm8k": "39.9",
+    "math": "11"
+  },
+  {
+    "name": "MistralAI Mistral large",
+    "openSource": "閉源",
+    "mmlu": "81.2",
+    "gpqa": "-",
+    "humanEval": "45.1",
+    "gsm8k": "-",
+    "math": "-"
+  },
+  {
+    "name": "OpenAI GPT-4o",
+    "openSource": "閉源",
+    "mmlu": "-",
+    "gpqa": "-",
+    "humanEval": "-",
+    "gsm8k": "-",
+    "math": "-"
+  },
+  {
+    "name": "OpenAI GPT-4o mini",
+    "openSource": "閉源",
+    "mmlu": "-",
+    "gpqa": "-",
+    "humanEval": "-",
+    "gsm8k": "-",
+    "math": "-"
+  },
+  {
+    "name": "OpenAI GPT-4",
+    "openSource": "閉源",
+    "mmlu": "86.4",
+    "gpqa": "35.7 (0-shot CoT)",
+    "humanEval": "67",
+    "gsm8k": "92.0 (5-shot CoT)",
+    "math": "52.9"
+  },
+  {
+    "name": "OpenAI GPT-3.5",
+    "openSource": "閉源",
+    "mmlu": "70",
+    "gpqa": "28.1 (0-shot CoT)",
+    "humanEval": "48.1",
+    "gsm8k": "57.1 (5-shot)",
+    "math": "34.1"
+  }
+];
 export default function AIModelsComparisonTable() {
-  const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [openSourceFilter, setOpenSourceFilter] = useState('all');
   const [sortConfig, setSortConfig] = useState({ key: null, direction: 'ascending' });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('/LLM_model_comparison.csv');
-      const reader = response.body.getReader();
-      const result = await reader.read();
-      const decoder = new TextDecoder('utf-8');
-      const csv = decoder.decode(result.value);
-      const results = Papa.parse(csv, { header: true });
-      setData(results.data);
-    };
-
-    fetchData();
-  }, []);
 
   const sortedData = useMemo(() => {
     let sortableItems = [...data];
@@ -38,15 +203,15 @@ export default function AIModelsComparisonTable() {
       });
     }
     return sortableItems;
-  }, [sortConfig, data]);
+  }, [sortConfig]);
 
   const filteredData = useMemo(() => {
     return sortedData.filter(item => {
-      const nameMatch = item['LLM Model Name'].toLowerCase().includes(searchTerm.toLowerCase());
+      const nameMatch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
       const openSourceMatch = 
         openSourceFilter === 'all' || 
-        (openSourceFilter === 'open' && item['Open Source / Close Source'] === 'Open Source') ||
-        (openSourceFilter === 'close' && item['Open Source / Close Source'] === 'Close Source');
+        (openSourceFilter === 'open' && item.openSource === '開源') ||
+        (openSourceFilter === 'close' && item.openSource === '閉源');
       return nameMatch && openSourceMatch;
     });
   }, [sortedData, searchTerm, openSourceFilter]);
@@ -59,6 +224,90 @@ export default function AIModelsComparisonTable() {
     setSortConfig({ key, direction });
   };
 
+  const mujiStyle = {
+    fontFamily: '"Helvetica Neue", Arial, sans-serif',
+    color: '#333',
+    maxWidth: '1200px',
+    margin: '0 auto',
+    padding: '20px',
+    backgroundColor: '#f7f7f7',
+  };
+
+  const titleStyle = {
+    fontSize: '28px',
+    fontWeight: 'normal',
+    marginBottom: '20px',
+    letterSpacing: '1px',
+    textAlign: 'center',
+  };
+
+  const headerContainerStyle = {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: '20px',
+  };
+
+  const authorStyle = {
+    fontSize: '14px',
+    color: '#666',
+  };
+
+  const searchContainerStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px',
+  };
+
+  const inputStyle = {
+    width: '200px',
+    padding: '8px 15px',
+    border: '2px solid #ddd',
+    borderRadius: '20px',
+    fontSize: '14px',
+    outline: 'none',
+  };
+
+  const selectStyle = {
+    padding: '8px 15px',
+    border: '2px solid #ddd',
+    borderRadius: '20px',
+    fontSize: '14px',
+    outline: 'none',
+    backgroundColor: 'white',
+  };
+
+  const tableStyle = {
+    width: '100%',
+    borderCollapse: 'separate',
+    borderSpacing: '0 1px',
+    backgroundColor: '#fff',
+    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+  };
+
+  const thStyle = {
+    padding: '15px',
+    textAlign: 'left',
+    fontWeight: 'normal',
+    fontSize: '14px',
+    borderBottom: '2px solid #ddd',
+    backgroundColor: '#f2f2f2',
+    cursor: 'pointer',
+  };
+
+  const tdStyle = {
+    padding: '15px',
+    fontSize: '14px',
+    borderBottom: '1px solid #eee',
+  };
+
+  const referenceStyle = {
+    marginTop: '20px',
+    fontSize: '14px',
+    color: '#666',
+    lineHeight: '1.6',
+  };
+
   const getSortIndicator = (key) => {
     if (sortConfig.key === key) {
       return sortConfig.direction === 'ascending' ? ' ▲' : ' ▼';
@@ -67,23 +316,23 @@ export default function AIModelsComparisonTable() {
   };
 
   return (
-    <div className="mujiStyle">
-      <h1 className="titleStyle">AI LLM Model 評估比較表</h1>
+    <div style={mujiStyle}>
+      <h1 style={titleStyle}>AI LLM Model 評估比較表</h1>
       
-      <div className="headerContainerStyle">
-        <p className="authorStyle">Made by Simon Liu 2024.07</p>
-        <div className="searchContainerStyle">
+      <div style={headerContainerStyle}>
+        <p style={authorStyle}>Made by Simon Liu 2024.07</p>
+        <div style={searchContainerStyle}>
           <input
             type="text"
             placeholder="搜尋模型名稱..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="inputStyle"
+            style={inputStyle}
           />
           <select
             value={openSourceFilter}
             onChange={(e) => setOpenSourceFilter(e.target.value)}
-            className="selectStyle"
+            style={selectStyle}
           >
             <option value="all">全部</option>
             <option value="open">開源</option>
@@ -92,46 +341,47 @@ export default function AIModelsComparisonTable() {
         </div>
       </div>
       
-      <table className="tableStyle">
+      <table style={tableStyle}>
         <thead>
           <tr>
-            <th className="thStyle" onClick={() => requestSort('LLM Model Name')}>
-              模型名稱{getSortIndicator('LLM Model Name')}
+            <th style={thStyle} onClick={() => requestSort('name')}>
+              模型名稱{getSortIndicator('name')}
             </th>
-            <th className="thStyle" onClick={() => requestSort('Open Source / Close Source')}>
-              開源/閉源{getSortIndicator('Open Source / Close Source')}
+            <th style={thStyle} onClick={() => requestSort('openSource')}>
+              開源/閉源{getSortIndicator('openSource')}
             </th>
-            <th className="thStyle" onClick={() => requestSort('MMLU \n (5-shot)')}>
-              MMLU (5-shot){getSortIndicator('MMLU \n (5-shot)')}
+            <th style={thStyle} onClick={() => requestSort('mmlu')}>
+              MMLU (5-shot){getSortIndicator('mmlu')}
             </th>
-            <th className="thStyle" onClick={() => requestSort('GPQA \n (0-shot)')}>
-              GPQA (0-shot){getSortIndicator('GPQA \n (0-shot)')}
+            <th style={thStyle} onClick={() => requestSort('gpqa')}>
+              GPQA (0-shot){getSortIndicator('gpqa')}
             </th>
-            <th className="thStyle" onClick={() => requestSort('HumanEval \n (0-shot)')}>
-              HumanEval (0-shot){getSortIndicator('HumanEval \n (0-shot)')}
+            <th style={thStyle} onClick={() => requestSort('humanEval')}>
+              HumanEval (0-shot){getSortIndicator('humanEval')}
             </th>
-            <th className="thStyle" onClick={() => requestSort('GSM-8K \n (8-shot, CoT)')}>
-              GSM-8K (8-shot, CoT){getSortIndicator('GSM-8K \n (8-shot, CoT)')}
+            <th style={thStyle} onClick={() => requestSort('gsm8k')}>
+              GSM-8K (8-shot, CoT){getSortIndicator('gsm8k')}
             </th>
-            <th className="thStyle" onClick={() => requestSort('MATH \n (4-shot, CoT)')}>
-              MATH (4-shot, CoT){getSortIndicator('MATH \n (4-shot, CoT)')}
+            <th style={thStyle} onClick={() => requestSort('math')}>
+              MATH (4-shot, CoT){getSortIndicator('math')}
             </th>
           </tr>
         </thead>
         <tbody>
           {filteredData.map((item, index) => (
             <tr key={index}>
-              <td className="tdStyle" style={{ fontWeight: 'bold' }}>{item['LLM Model Name']}</td>
-              <td className="tdStyle">{item['Open Source / Close Source']}</td>
-              <td className="tdStyle">{item['MMLU \n (5-shot)']}</td>
-              <td className="tdStyle">{item['GPQA \n (0-shot)']}</td>
-              <td className="tdStyle">{item['HumanEval \n (0-shot)']}</td>
-              <td className="tdStyle">{item['GSM-8K \n (8-shot, CoT)']}</td>
-              <td className="tdStyle">{item['MATH \n (4-shot, CoT)']}</td>
+              <td style={{...tdStyle, fontWeight: 'bold'}}>{item.name}</td>
+              <td style={tdStyle}>{item.openSource}</td>
+              <td style={tdStyle}>{item.mmlu}</td>
+              <td style={tdStyle}>{item.gpqa}</td>
+              <td style={tdStyle}>{item.humanEval}</td>
+              <td style={tdStyle}>{item.gsm8k}</td>
+              <td style={tdStyle}>{item.math}</td>
             </tr>
           ))}
         </tbody>
       </table>
+
       <div style={referenceStyle}>
         <p>Reference：</p>
         <ul>
