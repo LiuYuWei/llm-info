@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 import ComparisonPage from './pages/ComparisonPage';
 import SnakeGamePage from './pages/SnakeGamePage';
 import SadukuGamePage from './pages/SadukuGamePage';
+import Game2048Page from './pages/Game2048Page';
 import './App.css';
 
 function App() {
@@ -26,6 +27,9 @@ function App() {
             <li>
               <Link to="/saduku-game"><FaTable /> AI 生成遊戲-Saduku</Link>
             </li>
+            <li>
+              <Link to="/game-2048"><FaTable /> AI 生成遊戲-2048</Link>
+            </li>
           </ul>
         </div>
         <div className="content">
@@ -34,6 +38,7 @@ function App() {
             <Route path="/llm-comparison" element={<ComparisonPage />} />
             <Route path="/snake-game" element={<SnakeGamePage />} />
             <Route path="/saduku-game" element={<SadukuGamePage />} />
+            <Route path="/game-2048" element={<Game2048Page />} />
           </Routes>
         </div>
       </div>
