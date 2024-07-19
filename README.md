@@ -1,3 +1,15 @@
+# 首頁在這邊：
+https://liuyuwei.github.io/llm-info/#/llm-comparison
+
+# 紀錄更新資訊在這邊：
+``` bash
+git add .
+git commit -m "Deploy new version to fix the error."
+git push origin main
+npm run build
+npm run deploy
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
