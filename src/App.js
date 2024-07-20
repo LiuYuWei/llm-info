@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HashRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import { FaHome, FaTable } from 'react-icons/fa';
+import { FaHome, FaBars, FaChartBar, FaGamepad, FaPuzzlePiece, FaCube, FaCaretDown, FaCaretRight, FaFolder } from 'react-icons/fa';
 import HomePage from './pages/HomePage';
 import ComparisonPage from './pages/ComparisonPage';
 import SnakeGamePage from './pages/SnakeGamePage';
@@ -9,27 +9,52 @@ import Game2048Page from './pages/Game2048Page';
 import './App.css';
 
 function App() {
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isGamesCollapsed, setIsGamesCollapsed] = useState(true);
+
+  const toggleSidebar = () => {
+    setIsSidebarCollapsed(!isSidebarCollapsed);
+  };
+
+  const toggleGames = () => {
+    setIsGamesCollapsed(!isGamesCollapsed);
+  };
+
   return (
     <Router>
-      <div className="App">
+      <div className={`App ${isSidebarCollapsed ? 'collapsed' : ''}`}>
         <div className="sidebar">
-          <h2>LLM 資料</h2>
+          <div className="sidebar-header">
+            <button className="toggle-button" onClick={toggleSidebar}>
+              <FaBars />
+            </button>
+            {!isSidebarCollapsed && <h2 className="sidebar-title">LLM 資料</h2>}
+          </div>
           <ul>
             <li>
-              <Link to="/"><FaHome /> 個人自我介紹</Link>
+              &nbsp;&nbsp;&nbsp;<Link to="/"><FaHome /><span className="link-text">個人自我介紹</span></Link>
             </li>
             <li>
-              <Link to="/llm-comparison"><FaTable /> LLM 模型比較表</Link>
+              &nbsp;&nbsp;&nbsp;<Link to="/llm-comparison"><FaChartBar /><span className="link-text">LLM 模型比較表</span></Link>
             </li>
-            <li>
-              <Link to="/snake-game"><FaTable /> AI 生成遊戲-貪食蛇</Link>
+            <li className="submenu" onClick={toggleGames}>
+              &nbsp;&nbsp;&nbsp;<FaFolder />
+              <span className="link-text">Claude 遊戲</span>
+              <span className="submenu-icon">{isGamesCollapsed ? <FaCaretRight /> : <FaCaretDown />}</span>
             </li>
-            <li>
-              <Link to="/saduku-game"><FaTable /> AI 生成遊戲-Saduku</Link>
-            </li>
-            <li>
-              <Link to="/game-2048"><FaTable /> AI 生成遊戲-2048</Link>
-            </li>
+            {!isGamesCollapsed && (
+              <ul className="submenu-items">
+                <li>
+                  &nbsp;&nbsp;&nbsp;<Link to="/snake-game"><FaGamepad /><span className="link-text">AI 生成遊戲-貪食蛇</span></Link>
+                </li>
+                <li>
+                  &nbsp;&nbsp;&nbsp;<Link to="/saduku-game"><FaPuzzlePiece /><span className="link-text">AI 生成遊戲-Saduku</span></Link>
+                </li>
+                <li>
+                  &nbsp;&nbsp;&nbsp;<Link to="/game-2048"><FaCube /><span className="link-text">AI 生成遊戲-2048</span></Link>
+                </li>
+              </ul>
+            )}
           </ul>
         </div>
         <div className="content">

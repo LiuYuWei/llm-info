@@ -10,7 +10,7 @@ body {
 }
 
 .sidebar {
-  width: 350px; /* 調整這裡 */
+  width: 350px;
   background: #333;
   color: #fff;
   padding: 20px 0;
@@ -19,20 +19,35 @@ body {
   left: 0;
   height: 100%;
   overflow: auto;
+  transition: width 0.3s ease;
 }
 
-.sidebar h2 {
-  text-align: center;
-  margin-bottom: 20px;
+.App.collapsed .sidebar {
+  width: 80px;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.sidebar-title {
+  margin-left: 10px;
+  font-size: 1.2em;
 }
 
 .sidebar ul {
   list-style: none;
   padding: 0;
+  margin-top: 20px;
 }
 
 .sidebar ul li {
   padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .sidebar ul li a {
@@ -40,6 +55,7 @@ body {
   text-decoration: none;
   display: flex;
   align-items: center;
+  white-space: nowrap;
 }
 
 .sidebar ul li a:hover {
@@ -50,10 +66,62 @@ body {
   margin-right: 10px;
 }
 
+.App.collapsed .sidebar ul li a {
+  justify-content: center;
+}
+
+.App.collapsed .sidebar ul li a span,
+.App.collapsed .sidebar ul li .link-text {
+  display: none;
+}
+
+.submenu {
+  display: flex;
+  align-items: center;
+  padding-left: 20px; /* 调整子菜单项的对齐 */
+}
+
+.submenu .link-text {
+  flex: 1;
+  padding-left: 10px; /* 增加内边距使文本与图标对齐 */
+}
+
+.submenu-icon {
+  margin-left: auto;
+}
+
+.App.collapsed .submenu-icon {
+  display: none;
+}
+
+.submenu-items {
+  list-style: none;
+  padding-left: 40px; /* 调整子菜单的缩进 */
+}
+
+.submenu-items li {
+  padding: 10px 0;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+}
+
 .content {
-  margin-left: 350px; /* 調整這裡 */
+  margin-left: 350px;
   padding: 20px;
-  width: calc(100% - 350px); /* 調整這裡 */
+  width: calc(100% - 350px);
+  transition: margin-left 0.3s ease, width 0.3s ease;
+}
+
+.App.collapsed .content {
+  margin-left: 80px;
+  width: calc(100% - 80px);
 }
 
 .container {
@@ -64,9 +132,9 @@ body {
   position: relative;
   margin-top: 100px;
   flex-grow: 1;
-  max-width: 800px; /* 增加這行 */
-  margin-left: auto; /* 增加這行 */
-  margin-right: auto; /* 增加這行 */
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .avatar {
@@ -124,5 +192,5 @@ h1 {
 }
 
 .social-links a:hover {
-  color: #0077B5; /* LinkedIn blue */
+  color: #0077B5;
 }
