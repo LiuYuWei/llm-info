@@ -32,20 +32,20 @@ function App() {
 
   return (
     <Router>
-      <div className={`App ${isSidebarCollapsed || isMobile ? 'collapsed' : ''}`}>
-        <div className={`sidebar ${isMobile ? 'mobile' : ''}`}>
+      <div className={`App ${isSidebarCollapsed ? 'collapsed' : ''} ${isMobile ? 'mobile' : ''}`}>
+        <div className={`sidebar ${isMobile && isSidebarCollapsed ? 'hidden' : ''}`}>
           <div className="sidebar-header">
             <button className="toggle-button" onClick={toggleSidebar}>
               <FaBars />
             </button>
-            {(!isSidebarCollapsed || !isMobile) && <h2 className="sidebar-title">LLM 資料</h2>}
+            <h2 className="sidebar-title">LLM 資料</h2>
           </div>
           <ul>
             <li>
-              <Link to="/"><FaHome /><span className="link-text">個人自我介紹</span></Link>
+              <Link to="/" onClick={() => isMobile && toggleSidebar()}><FaHome /><span className="link-text">個人自我介紹</span></Link>
             </li>
             <li>
-              <Link to="/llm-comparison"><FaChartBar /><span className="link-text">LLM 模型比較表</span></Link>
+              <Link to="/llm-comparison" onClick={() => isMobile && toggleSidebar()}><FaChartBar /><span className="link-text">LLM 模型比較表</span></Link>
             </li>
             <li className="submenu" onClick={toggleGames}>
               <FaFolder />
@@ -55,19 +55,24 @@ function App() {
             {!isGamesCollapsed && (
               <ul className="submenu-items">
                 <li>
-                  <Link to="/snake-game"><FaGamepad /><span className="link-text">AI 生成遊戲-貪食蛇</span></Link>
+                  <Link to="/snake-game" onClick={() => isMobile && toggleSidebar()}><FaGamepad /><span className="link-text">AI 生成遊戲-貪食蛇</span></Link>
                 </li>
                 <li>
-                  <Link to="/saduku-game"><FaPuzzlePiece /><span className="link-text">AI 生成遊戲-Saduku</span></Link>
+                  <Link to="/saduku-game" onClick={() => isMobile && toggleSidebar()}><FaPuzzlePiece /><span className="link-text">AI 生成遊戲-Saduku</span></Link>
                 </li>
                 <li>
-                  <Link to="/game-2048"><FaCube /><span className="link-text">AI 生成遊戲-2048</span></Link>
+                  <Link to="/game-2048" onClick={() => isMobile && toggleSidebar()}><FaCube /><span className="link-text">AI 生成遊戲-2048</span></Link>
                 </li>
               </ul>
             )}
           </ul>
         </div>
         <div className="content">
+          {isMobile && (
+            <button className="mobile-menu-button" onClick={toggleSidebar}>
+              <FaBars />
+            </button>
+          )}
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/llm-comparison" element={<ComparisonPage />} />
