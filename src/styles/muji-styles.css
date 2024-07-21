@@ -1,3 +1,12 @@
+.mujiStyle {
+  width: 100%;
+  max-width: none;
+  overflow-x: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
 .muji-sidebar {
   background-color: #f4f4f4;
   padding: 20px;
@@ -49,4 +58,120 @@
 .muji-content {
   margin-left: 270px;
   padding: 20px;
+}
+
+/* 新添加的樣式 */
+.titleStyle {
+  text-align: center;
+  color: #333;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.headerContainerStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.authorStyle {
+  margin: 10px 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.searchContainerStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.inputStyle, .selectStyle {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.tableContainerStyle {
+  overflow-x: auto;
+}
+
+.tableStyle {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+.thStyle, .tdStyle {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.thStyle {
+  background-color: #f2f2f2;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.referenceStyle {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.referenceStyle ul {
+  padding-left: 20px;
+}
+
+.referenceStyle a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.referenceStyle a:hover {
+  text-decoration: underline;
+}
+
+/* 媒體查詢，用於響應式設計 */
+@media (max-width: 768px) {
+  .muji-sidebar {
+    display: none; /* 在小屏幕上隱藏側邊欄 */
+  }
+
+  .muji-content {
+    margin-left: 0;
+    padding: 10px;
+  }
+
+  .titleStyle {
+    font-size: 24px;
+  }
+
+  .searchContainerStyle {
+    flex-direction: column;
+  }
+
+  .inputStyle, .selectStyle {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+
+@media (min-width: 769px) {
+  .searchContainerStyle {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .inputStyle, .selectStyle {
+    width: auto;
+    margin: 0 5px;
+  }
 }

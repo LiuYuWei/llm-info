@@ -42,26 +42,26 @@ function App() {
           </div>
           <ul>
             <li>
-              <Link to="/" onClick={() => isMobile && toggleSidebar()}><FaHome /><span className="link-text">個人自我介紹</span></Link>
+              &nbsp;&nbsp;<Link to="/" onClick={() => isMobile && toggleSidebar()}><FaHome /><span className="link-text">個人自我介紹</span></Link>
             </li>
             <li>
-              <Link to="/llm-comparison" onClick={() => isMobile && toggleSidebar()}><FaChartBar /><span className="link-text">LLM 模型比較表</span></Link>
+              &nbsp;&nbsp;<Link to="/llm-comparison" onClick={() => isMobile && toggleSidebar()}><FaChartBar /><span className="link-text">LLM 模型比較表</span></Link>
             </li>
             <li className="submenu" onClick={toggleGames}>
-              <FaFolder />
+              &nbsp;&nbsp;<FaFolder />
               <span className="link-text">Claude 遊戲</span>
               <span className="submenu-icon">{isGamesCollapsed ? <FaCaretRight /> : <FaCaretDown />}</span>
             </li>
             {!isGamesCollapsed && (
               <ul className="submenu-items">
                 <li>
-                  <Link to="/snake-game" onClick={() => isMobile && toggleSidebar()}><FaGamepad /><span className="link-text">AI 生成遊戲-貪食蛇</span></Link>
+                  &nbsp;&nbsp;<Link to="/snake-game" onClick={() => isMobile && toggleSidebar()}><FaGamepad /><span className="link-text">AI 生成遊戲-貪食蛇</span></Link>
                 </li>
                 <li>
-                  <Link to="/saduku-game" onClick={() => isMobile && toggleSidebar()}><FaPuzzlePiece /><span className="link-text">AI 生成遊戲-Saduku</span></Link>
+                  &nbsp;&nbsp;<Link to="/saduku-game" onClick={() => isMobile && toggleSidebar()}><FaPuzzlePiece /><span className="link-text">AI 生成遊戲-Saduku</span></Link>
                 </li>
                 <li>
-                  <Link to="/game-2048" onClick={() => isMobile && toggleSidebar()}><FaCube /><span className="link-text">AI 生成遊戲-2048</span></Link>
+                  &nbsp;&nbsp;<Link to="/game-2048" onClick={() => isMobile && toggleSidebar()}><FaCube /><span className="link-text">AI 生成遊戲-2048</span></Link>
                 </li>
               </ul>
             )}

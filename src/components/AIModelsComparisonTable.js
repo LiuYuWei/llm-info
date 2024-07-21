@@ -20,7 +20,7 @@ export default function AIModelsComparisonTable() {
         const decoder = new TextDecoder('utf-8');
         const csv = decoder.decode(result.value);
         const results = Papa.parse(csv, { header: true });
-        console.log("Parsed CSV data:", results.data); // 调试输出
+        console.log("Parsed CSV data:", results.data);
         setData(results.data);
       } catch (error) {
         console.error("Failed to load CSV file", error);
@@ -100,46 +100,48 @@ export default function AIModelsComparisonTable() {
         </div>
       </div>
       
-      <table className="tableStyle">
-        <thead>
-          <tr>
-            <th className="thStyle" onClick={() => requestSort('LLM Model Name')}>
-              模型名稱{getSortIndicator('LLM Model Name')}
-            </th>
-            <th className="thStyle" onClick={() => requestSort('Open Source / Close Source')}>
-              開源/閉源{getSortIndicator('Open Source / Close Source')}
-            </th>
-            <th className="thStyle" onClick={() => requestSort('MMLU \n (5-shot)')}>
-              MMLU (5-shot){getSortIndicator('MMLU \n (5-shot)')}
-            </th>
-            <th className="thStyle" onClick={() => requestSort('GPQA \n (0-shot)')}>
-              GPQA (0-shot){getSortIndicator('GPQA \n (0-shot)')}
-            </th>
-            <th className="thStyle" onClick={() => requestSort('HumanEval \n (0-shot)')}>
-              HumanEval (0-shot){getSortIndicator('HumanEval \n (0-shot)')}
-            </th>
-            <th className="thStyle" onClick={() => requestSort('GSM-8K \n (8-shot, CoT)')}>
-              GSM-8K (8-shot, CoT){getSortIndicator('GSM-8K \n (8-shot, CoT)')}
-            </th>
-            <th className="thStyle" onClick={() => requestSort('MATH \n (4-shot, CoT)')}>
-              MATH (4-shot, CoT){getSortIndicator('MATH \n (4-shot, CoT)')}
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredData.map((item, index) => (
-            <tr key={index}>
-              <td className="tdStyle" style={{ fontWeight: 'bold' }}>{item['LLM Model Name']}</td>
-              <td className="tdStyle">{item['Open Source / Close Source']}</td>
-              <td className="tdStyle">{item['MMLU \n (5-shot)']}</td>
-              <td className="tdStyle">{item['GPQA \n (0-shot)']}</td>
-              <td className="tdStyle">{item['HumanEval \n (0-shot)']}</td>
-              <td className="tdStyle">{item['GSM-8K \n (8-shot, CoT)']}</td>
-              <td className="tdStyle">{item['MATH \n (4-shot, CoT)']}</td>
+      <div className="tableContainerStyle">
+        <table className="tableStyle">
+          <thead>
+            <tr>
+              <th className="thStyle" onClick={() => requestSort('LLM Model Name')}>
+                模型名稱{getSortIndicator('LLM Model Name')}
+              </th>
+              <th className="thStyle" onClick={() => requestSort('Open Source / Close Source')}>
+                開源/閉源{getSortIndicator('Open Source / Close Source')}
+              </th>
+              <th className="thStyle" onClick={() => requestSort('MMLU \n (5-shot)')}>
+                MMLU (5-shot){getSortIndicator('MMLU \n (5-shot)')}
+              </th>
+              <th className="thStyle" onClick={() => requestSort('GPQA \n (0-shot)')}>
+                GPQA (0-shot){getSortIndicator('GPQA \n (0-shot)')}
+              </th>
+              <th className="thStyle" onClick={() => requestSort('HumanEval \n (0-shot)')}>
+                HumanEval (0-shot){getSortIndicator('HumanEval \n (0-shot)')}
+              </th>
+              <th className="thStyle" onClick={() => requestSort('GSM-8K \n (8-shot, CoT)')}>
+                GSM-8K (8-shot, CoT){getSortIndicator('GSM-8K \n (8-shot, CoT)')}
+              </th>
+              <th className="thStyle" onClick={() => requestSort('MATH \n (4-shot, CoT)')}>
+                MATH (4-shot, CoT){getSortIndicator('MATH \n (4-shot, CoT)')}
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {filteredData.map((item, index) => (
+              <tr key={index}>
+                <td className="tdStyle" style={{ fontWeight: 'bold' }}>{item['LLM Model Name']}</td>
+                <td className="tdStyle">{item['Open Source / Close Source']}</td>
+                <td className="tdStyle">{item['MMLU \n (5-shot)']}</td>
+                <td className="tdStyle">{item['GPQA \n (0-shot)']}</td>
+                <td className="tdStyle">{item['HumanEval \n (0-shot)']}</td>
+                <td className="tdStyle">{item['GSM-8K \n (8-shot, CoT)']}</td>
+                <td className="tdStyle">{item['MATH \n (4-shot, CoT)']}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       <div className="referenceStyle">
         <p>Reference：</p>
