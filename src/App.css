@@ -19,7 +19,8 @@ body {
   left: 0;
   height: 100%;
   overflow: auto;
-  transition: width 0.3s ease;
+  transition: all 0.3s ease;
+  z-index: 1000;
 }
 
 .App.collapsed .sidebar {
@@ -30,11 +31,15 @@ body {
   display: flex;
   align-items: center;
   padding: 0 20px;
+  height: 60px;
 }
 
 .sidebar-title {
   margin-left: 10px;
   font-size: 1.2em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sidebar ul {
@@ -78,12 +83,12 @@ body {
 .submenu {
   display: flex;
   align-items: center;
-  padding-left: 20px; /* 调整子菜单项的对齐 */
+  padding-left: 20px;
 }
 
 .submenu .link-text {
   flex: 1;
-  padding-left: 10px; /* 增加内边距使文本与图标对齐 */
+  padding-left: 10px;
 }
 
 .submenu-icon {
@@ -96,7 +101,7 @@ body {
 
 .submenu-items {
   list-style: none;
-  padding-left: 40px; /* 调整子菜单的缩进 */
+  padding-left: 40px;
 }
 
 .submenu-items li {
@@ -110,6 +115,11 @@ body {
   font-size: 24px;
   cursor: pointer;
   padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
 }
 
 .content {
@@ -193,4 +203,85 @@ h1 {
 
 .social-links a:hover {
   color: #0077B5;
+}
+
+.mobile-menu-button {
+  display: none;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .App.mobile .sidebar {
+    position: fixed;
+    width: 80%;
+    max-width: 350px;
+    height: 100%;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .App.mobile .sidebar:not(.hidden) {
+    transform: translateX(0);
+  }
+
+  .App.mobile.collapsed .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .App.mobile .content {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .mobile-menu-button {
+    display: block;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1001;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+  }
+
+  .App.mobile .sidebar-header {
+    justify-content: space-between;
+    padding: 0 15px;
+  }
+
+  .App.mobile .toggle-button {
+    order: 2;
+  }
+
+  .App.mobile .sidebar-title {
+    order: 1;
+    margin-left: 0;
+  }
+
+  .container {
+    margin-top: 60px;
+    padding: 20px;
+  }
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+    top: -50px;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin-top: 40px;
+  }
+
+  .info-value {
+    font-size: 1em;
+  }
+
+  .social-links a {
+    font-size: 20px;
+    margin: 0 10px;
+  }
 }
