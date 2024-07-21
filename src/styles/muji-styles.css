@@ -18,7 +18,6 @@
 }
 
 .muji-h2 {
-  align-items: center;
   font-family: "Helvetica Neue", Arial, sans-serif;
   font-size: 24px;
   font-weight: 400;
@@ -28,6 +27,7 @@
   margin-bottom: 20px;
   text-transform: uppercase;
   letter-spacing: 2px;
+  text-align: center;
 }
 
 .muji-ul {
