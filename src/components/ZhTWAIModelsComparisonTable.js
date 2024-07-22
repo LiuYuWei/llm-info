@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import Papa from 'papaparse';
 import './AIModelsComparisonTable.css';
 
-export default function AIModelsComparisonTable() {
+export default function ZhTWAIModelsComparisonTable() {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [openSourceFilter, setOpenSourceFilter] = useState('all');
@@ -11,7 +11,7 @@ export default function AIModelsComparisonTable() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(process.env.PUBLIC_URL + '/data/llm_model_comparison.csv');
+        const response = await fetch(process.env.PUBLIC_URL + '/data/zh_tw_llm_model_comparison.csv');
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
@@ -50,11 +50,12 @@ export default function AIModelsComparisonTable() {
 
   const filteredData = useMemo(() => {
     return sortedData.filter(item => {
-      const nameMatch = item['LLM Model Name']?.toLowerCase().includes(searchTerm.toLowerCase());
+      const nameMatch = item['Model Name']?.toLowerCase().includes(searchTerm.toLowerCase());
       const openSourceMatch = 
         openSourceFilter === 'all' || 
-        (openSourceFilter === 'open' && item['Open Source / Close Source'] === 'Open Source') ||
-        (openSourceFilter === 'close' && item['Open Source / Close Source'] === 'Close Source');
+        (openSourceFilter === 'llama 2' && item['Original Architecture'] === 'Llama 2') ||
+        (openSourceFilter === 'llama 3' && item['Original Architecture'] === 'Llama 3') ||
+        (openSourceFilter === 'Mistral-8x7B' && item['Original Architecture'] === 'Mistral-8x7B');
       return nameMatch && openSourceMatch;
     });
   }, [sortedData, searchTerm, openSourceFilter]);
@@ -76,7 +77,7 @@ export default function AIModelsComparisonTable() {
 
   return (
     <div className="mujiStyle">
-      <h1 className="titleStyle">AI LLM Model 評估比較表</h1>
+      <h1 className="titleStyle">繁體中文 LLM Model 評估比較表</h1>
       
       <div className="headerContainerStyle">
         <p className="authorStyle">Made by Simon Liu 2024.07</p>
@@ -93,9 +94,10 @@ export default function AIModelsComparisonTable() {
             onChange={(e) => setOpenSourceFilter(e.target.value)}
             className="selectStyle"
           >
-            <option value="all">全部</option>
-            <option value="open">開源</option>
-            <option value="close">閉源</option>
+            <option value="all">全部架構</option>
+            <option value="llama 2">Llama 2</option>
+            <option value="llama 3">Llama 3</option>
+            <option value="Mistral-8x7B">Mistral-8x7B</option>
           </select>
         </div>
       </div>
@@ -104,39 +106,47 @@ export default function AIModelsComparisonTable() {
         <table className="tableStyle">
           <thead>
             <tr>
-              <th className="thStyle" onClick={() => requestSort('LLM Model Name')}>
-                模型名稱{getSortIndicator('LLM Model Name')}
+              <th className="thStyle" onClick={() => requestSort('Model Name')}>
+                模型名稱{getSortIndicator('Model Name')}
               </th>
-              <th className="thStyle" onClick={() => requestSort('Open Source / Close Source')}>
-                開源/閉源{getSortIndicator('Open Source / Close Source')}
+              <th className="thStyle" onClick={() => requestSort('開源單位')}>
+                開源單位{getSortIndicator('開源單位')}
               </th>
-              <th className="thStyle" onClick={() => requestSort('MMLU \n (5-shot)')}>
-                MMLU (5-shot){getSortIndicator('MMLU \n (5-shot)')}
+              <th className="thStyle" onClick={() => requestSort('Original Architecture')}>
+                原始模型架構{getSortIndicator('Original Architecture')}
               </th>
-              <th className="thStyle" onClick={() => requestSort('GPQA \n (0-shot)')}>
-                GPQA (0-shot){getSortIndicator('GPQA \n (0-shot)')}
+              <th className="thStyle" onClick={() => requestSort('Size')}>
+                模型大小{getSortIndicator('Size')}
               </th>
-              <th className="thStyle" onClick={() => requestSort('HumanEval \n (0-shot)')}>
-                HumanEval (0-shot){getSortIndicator('HumanEval \n (0-shot)')}
+              <th className="thStyle" onClick={() => requestSort('Max Context Window')}>
+                最大輸入長度{getSortIndicator('Max Context Window')}
               </th>
-              <th className="thStyle" onClick={() => requestSort('GSM-8K \n (8-shot, CoT)')}>
-                GSM-8K (8-shot, CoT){getSortIndicator('GSM-8K \n (8-shot, CoT)')}
+              <th className="thStyle" onClick={() => requestSort('Function Calling')}>
+                Function Calling{getSortIndicator('Function Calling')}
               </th>
-              <th className="thStyle" onClick={() => requestSort('MATH \n (4-shot, CoT)')}>
-                MATH (4-shot, CoT){getSortIndicator('MATH \n (4-shot, CoT)')}
+              <th className="thStyle" onClick={() => requestSort('TMLU')}>
+                TMLU{getSortIndicator('TMLU')}
+              </th>
+              <th className="thStyle" onClick={() => requestSort('Taiwan Truthful QA Evaluation')}>
+                Taiwan Truthful QA Evaluation{getSortIndicator('Taiwan Truthful QA Evaluation')}
+              </th>
+              <th className="thStyle" onClick={() => requestSort('Legal Eval')}>
+                Legal Eval{getSortIndicator('Legal Eval')}
               </th>
             </tr>
           </thead>
           <tbody>
             {filteredData.map((item, index) => (
               <tr key={index}>
-                <td className="tdStyle" style={{ fontWeight: 'bold' }}>{item['LLM Model Name']}</td>
-                <td className="tdStyle">{item['Open Source / Close Source']}</td>
-                <td className="tdStyle">{item['MMLU \n (5-shot)']}</td>
-                <td className="tdStyle">{item['GPQA \n (0-shot)']}</td>
-                <td className="tdStyle">{item['HumanEval \n (0-shot)']}</td>
-                <td className="tdStyle">{item['GSM-8K \n (8-shot, CoT)']}</td>
-                <td className="tdStyle">{item['MATH \n (4-shot, CoT)']}</td>
+                <td className="tdStyle" style={{ fontWeight: 'bold' }}>{item['Model Name']}</td>
+                <td className="tdStyle">{item['開源單位']}</td>
+                <td className="tdStyle">{item['Original Architecture']}</td>
+                <td className="tdStyle">{item['Size']}</td>
+                <td className="tdStyle">{item['Max Context Window']}</td>
+                <td className="tdStyle">{item['Function Calling']}</td>
+                <td className="tdStyle">{item['TMLU']}</td>
+                <td className="tdStyle">{item['Taiwan Truthful QA Evaluation']}</td>
+                <td className="tdStyle">{item['Legal Eval']}</td>
               </tr>
             ))}
           </tbody>
@@ -146,9 +156,10 @@ export default function AIModelsComparisonTable() {
       <div className="referenceStyle">
         <p>Reference：</p>
         <ul>
-          <li>Llama benchmark: <a href="https://llama.meta.com/llama3/">https://llama.meta.com/llama3/</a></li>
-          <li>Anthropic Claude 3 benchmark: <a href="https://www.anthropic.com/news/claude-3-family">https://www.anthropic.com/news/claude-3-family</a></li>
-          <li>Introducing Meta Llama 3: <a href="https://ai.meta.com/blog/meta-llama-3/">https://ai.meta.com/blog/meta-llama-3/</a></li>
+          <li>Yen-Ting Lin: <a href="https://huggingface.co/yentinglin">https://huggingface.co/yentinglin</a></li>
+          <li>MediaTek Research: <a href="https://huggingface.co/MediaTek-Research">https://huggingface.co/MediaTek-Research</a></li>
+          <li>TAIDE: <a href="https://huggingface.co/taide">https://huggingface.co/taide</a></li>
+          <li>INX-TEXT: <a href="https://huggingface.co/INX-TEXT">https://huggingface.co/INX-TEXT</a></li>
         </ul>
       </div>
     </div>
