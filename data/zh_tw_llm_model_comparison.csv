@@ -1,0 +1,13 @@
+Model Name,開源單位,Original Architecture,Size,Max Context Window,Function Calling,TMLU,Taiwan Truthful QA Evaluation,Legal Eval
+Llama-3-Taiwan-70B-Instruct,yentinglin (Project TAME),Llama 3,70B,-,Yes,74.76%,80.95%,68.42%
+Llama-3-Taiwan-70B-Instruct-DPO,yentinglin (Project TAME),Llama 3,70B,-,Yes,74.60%,81.75%,70.33%
+Llama-3-Taiwan-70B-Instruct-128k,yentinglin (Project TAME),Llama 3,70B,128k,Yes,73.01%,80.16%,63.64%
+Llama-3-Taiwan-8B-Instruct,yentinglin (Project TAME),Llama 3,8B,-,Yes,59.50%,61.11%,53.11%
+Llama-3-Taiwan-8B-Instruct-DPO,yentinglin (Project TAME),Llama 3,8B,-,Yes,59.88%,59.52%,52.63%
+Llama-3-Taiwan-8B-Instruct-128k,yentinglin (Project TAME),Llama 3,8B,128k,Yes,-,-,-
+Breexe-8x7B-Instruct-v0_1,MediaTek,Mistral-8x7B,8x7B,8K,Not Sure,-,-,-
+Breeze-7B-Instruct-v1_0,MediaTek,Llama 2,7B,32K,Not Sure,55.57%,52.38%,39.23%
+Llama3-TAIDE-LX-8B-Chat-Alpha1,TAIDE,Llama 3,8B,8K,Not Sure,47.30%,50.79%,37.80%
+TAIDE-LX-7B-Chat,TAIDE,Llama 2,7B,4K,Not Sure,-,-,-
+Bailong-instruct-7B,INX-TEXT,Llama 2,7B,2048,Not Sure,-,-,-
+Bailong-orpo-7B,INX-TEXT,Llama 2,7B,2048,Not Sure,-,-,-
